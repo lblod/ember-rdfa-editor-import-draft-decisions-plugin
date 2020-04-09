@@ -1,7 +1,7 @@
 ember-rdfa-editor-import-draft-decisions-plugin
 ==============================================================================
 
-[Short description of the addon.]
+Plugin that allows to insert draft decisons inside of meeting minutes.
 
 
 Compatibility
@@ -18,12 +18,6 @@ Installation
 ```
 ember install ember-rdfa-editor-import-draft-decisions-plugin
 ```
-
-
-Usage
-------------------------------------------------------------------------------
-
-[Longer description of how to use the addon in apps.]
 
 
 Contributing
