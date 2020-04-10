@@ -39,18 +39,12 @@ export default class RdfaEditorImportDraftDecisionsPluginService extends Service
           const bestuurseenheid = (await this.store.query('bestuurseenheid',
             { 'filter[bestuursorganen][heeft-tijdsspecialisaties][:uri:]': bestuursorgaanUri }
           )).firstObject;
-          const draftDecisions = await this.store.query('document-container',
-            {
-              'filter[folder][:uri:]': "http://mu.semte.ch/application/editor-document-folder/ae5feaed-7b70-4533-9417-10fbbc480a4c",
-              'filter[publisher][:uri:]': bestuurseenheid.uri
-            }
-          );
 
           hintsRegistry.addHint( "import-draft-decisions", {
             location,
             card: "editor-plugins/import-draft-decisions-card",
             info: {
-              hintsRegistry, editor, location, draftDecisions
+              hintsRegistry, editor, location, bestuurseenheid
             }
           });
         }

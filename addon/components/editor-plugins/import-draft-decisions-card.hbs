@@ -1,51 +1,69 @@
-<div class="modal-dialog modal-dialog--sectioned modal-dialog--wide modal-dialog--static modal-dialog--hint">
-  <div class="modal-dialog__header">
-    <div class="grid">
-      <div class="col--6-12">
-        <h1 class="h3">Voeg een eigen ontwerpbesluit in</h1>
-        <div class="u-spacer--tb--tiny">
-          <div class="input-field-icon-container--block input-field-icon-container--left">
-            <TextSearch @filter={{this.title}} @placeholder="Zoek titel ontwerpbesluit" />
-            <i class="input-field__icon vi-magnifier vi ember-view"></i>
+<div class="modal-dialog__header">
+  <div class="grid">
+    <div class="col--10-12">
+      <p>Wil u graag de <strong>ontwerpbesluit</strong> invoegen?</p>
+    </div>
+  </div>
+</div>
+
+<div class="modal-dialog__footer">
+  {{#wu-button-group}}
+      {{wu-button
+        label="Invoeg ontwerpbesluit"
+        isNarrow=true
+        onClick=(action "togglePopup")
+      }}
+    {{/wu-button-group}}
+</div>
+
+{{#if this.popup}}
+  {{#wu-modal
+    title = "Voeg een eigen ontwerpbesluit in"
+    dialog-class = "modal-dialog--wide modal-dialog--sectioned"
+    onClose = this.togglePopup
+    as |m|}}
+    {{#m.content isSectioned=false}}
+      <div class="modal-dialog__header">
+        <div class="grid">
+          <div class="col--6-12">
+            <div class="u-spacer--tb--tiny">
+              <div class="input-field-icon-container--block input-field-icon-container--left">
+                <TextSearch @filter={{this.filter.title}} @placeholder="Zoek titel ontwerpbesluit" />
+                <i class="input-field__icon vi-magnifier vi ember-view"></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col--6-12 u-align-right" data-ember-action="" data-ember-action-838="838">
-        <div class="anti-jitter">
-          <LinkTo @route="ontwerpbesluiten-documents.demo-1-b" class="link--icon--close">
-            <span class="u-visually-hidden">Venster sluiten</span>
-          </LinkTo>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <DataTable @content={{this.info.draftDecisions}} @noDataMessage="Geen documenten" @class="container-flex--contain" as |table|>
-    <table.content as |c|>
-      <c.header>
-        <ThSortable @field="currentVersion.title" @currentSorting={{this.sort}} @label="Titel ontwerpbesluit" @class="data-table__header-title" />
-        <ThSortable @field="currentVersion.createdOn" @currentSorting={{this.sort}} @label="Aangemaakt" @class="data-table__header-title" />
-        <ThSortable @field="currentVersion.updatedOn" @currentSorting={{this.sort}} @label="Aangepast" @class="data-table__header-title" />
-        <ThSortable @field="status" @currentSorting={{this.sort}} @label="Status" @class="data-table__header-title u-align-right" />
-      </c.header>
-      <c.body as |container|>
-        {{#with container.currentVersion as |row|}}
-          <td><LinkTo @route="draft-decisions.edit" @model={{container.id}}>{{row.title}}</LinkTo></td>
-          <td>
-            {{moment-calendar row.createdOn}}
-            <br>
-            <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
-          </td>
-          <td>
-            {{moment-calendar row.updatedOn}}
-            <br>
-            <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
-          </td>
-          <td class="u-align-right">
-            <a class="button button--alt button--narrow" href="#" role="button" {{on "click" (fn this.insert row)}}>Voeg in</a>
-          </td>
-        {{/with}}
-      </c.body>
-    </table.content>
-  </DataTable>
-</div>
+      <DataTable @content={{this.draftDecisions}} @noDataMessage="Geen documenten" @page={{this.filter.page}} @size={{this.filter.size}} @sort={{this.filter.sort}} @class="container-flex--contain" as |table|>
+        <table.content as |c|>
+          <c.header>
+            <ThSortable @field="currentVersion.title" @currentSorting={{this.filter.sort}} @label="Titel ontwerpbesluit" @class="data-table__header-title" />
+            <ThSortable @field="currentVersion.createdOn" @currentSorting={{this.filter.sort}} @label="Aangemaakt" @class="data-table__header-title" />
+            <ThSortable @field="currentVersion.updatedOn" @currentSorting={{this.filter.sort}} @label="Aangepast" @class="data-table__header-title" />
+            <ThSortable @field="status" @currentSorting={{this.filter.sort}} @label="Status" @class="data-table__header-title u-align-right" />
+          </c.header>
+          <c.body as |container|>
+            {{#with container.currentVersion as |document|}}
+              <td>{{document.title}}</td>
+              <td>
+                {{moment-calendar document.createdOn}}
+                <br>
+                <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
+              </td>
+              <td>
+                {{moment-calendar document.updatedOn}}
+                <br>
+                <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
+              </td>
+              <td class="u-align-right">
+                <span class="button button--alt button--nardocument" role="button" {{on "click" (fn this.insert document)}}>Voeg in</span>
+              </td>
+            {{/with}}
+          </c.body>
+        </table.content>
+      </DataTable>
+    {{/m.content}}
+  {{/wu-modal}}
+{{/if}}
