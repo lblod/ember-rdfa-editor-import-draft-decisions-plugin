@@ -30,20 +30,20 @@
       </c.header>
       <c.body as |container|>
         {{#with container.currentVersion as |row|}}
-        <td><LinkTo @route="draft-decisions.edit" @model={{container.id}}>{{row.title}}</LinkTo></td>
-        <td>
-          {{moment-calendar row.createdOn}}
-          <br>
-          <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
-        </td>
-        <td>
-          {{moment-calendar row.updatedOn}}
-          <br>
-          <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
-        </td>
-        <td class="u-align-right">
-          <a class="button button--alt button--narrow" href="#" role="button" onClick={{action "insert"}}>Voeg in</a>
-        </td>
+          <td><LinkTo @route="draft-decisions.edit" @model={{container.id}}>{{row.title}}</LinkTo></td>
+          <td>
+            {{moment-calendar row.createdOn}}
+            <br>
+            <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
+          </td>
+          <td>
+            {{moment-calendar row.updatedOn}}
+            <br>
+            <p class="smaller text-fade">{{moment-from-now this.document.currentVersion.updatedOn}}</p>
+          </td>
+          <td class="u-align-right">
+            <a class="button button--alt button--narrow" href="#" role="button" {{on "click" (fn this.insert row)}}>Voeg in</a>
+          </td>
         {{/with}}
       </c.body>
     </table.content>
