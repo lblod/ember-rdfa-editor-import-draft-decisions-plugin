@@ -1,6 +1,5 @@
 import { reads } from '@ember/object/computed';
 import Component from '@ember/component';
-import layout from '../../templates/components/editor-plugins/import-draft-decisions-card';
 
 /**
 * Card displaying a hint of the Date plugin
@@ -10,8 +9,6 @@ import layout from '../../templates/components/editor-plugins/import-draft-decis
 * @extends Ember.Component
 */
 export default Component.extend({
-  layout,
-
   /**
    * Region on which the card applies
    * @property location
