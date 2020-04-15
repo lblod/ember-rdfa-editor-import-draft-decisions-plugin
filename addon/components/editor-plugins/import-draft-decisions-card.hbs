@@ -7,21 +7,22 @@
 </div>
 
 <div class="modal-dialog__footer">
-  {{#wu-button-group}}
-      {{wu-button
-        label="Invoeg ontwerpbesluit"
-        isNarrow=true
-        onClick=(action "togglePopup")
-      }}
-    {{/wu-button-group}}
+  <WuButtonGroup>
+    <WuButton 
+      @label="Invoeg ontwerpbesluit"
+      @isNarrow={{true}}
+      @onClick={{this.togglePopup}}
+    />
+  </WuButtonGroup>
 </div>
 
 {{#if this.popup}}
-  {{#wu-modal
-    title = "Voeg een eigen ontwerpbesluit in"
-    dialog-class = "modal-dialog--wide modal-dialog--sectioned"
-    onClose = this.togglePopup
-    as |m|}}
+  <WuModal
+    @title="Voeg een eigen ontwerpbesluit in"
+    @dialog-class="modal-dialog--wide modal-dialog--sectioned"
+    @onClose={{this.togglePopup}}
+    as |m|
+  >
     {{#m.content isSectioned=false}}
       <div class="modal-dialog__header">
         <div class="grid">
@@ -65,5 +66,5 @@
         </table.content>
       </DataTable>
     {{/m.content}}
-  {{/wu-modal}}
+  </WuModal>
 {{/if}}

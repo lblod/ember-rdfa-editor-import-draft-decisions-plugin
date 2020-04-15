@@ -72,8 +72,6 @@ export default class ImportDrafDecisionsCard extends Component {
 
   @restartableTask
   *search(filter) {
-    const bestuurseenheidUri = yield this.args.info.bestuurseenheid.uri;
-
     const queryFilter = {
       page: {
         size: filter.size,
@@ -81,8 +79,7 @@ export default class ImportDrafDecisionsCard extends Component {
       },
       sort: filter.sort,
       include: 'current-version',
-      'filter[folder][:uri:]': "http://mu.semte.ch/application/editor-document-folder/ae5feaed-7b70-4533-9417-10fbbc480a4c",
-      'filter[publisher][:uri:]': bestuurseenheidUri
+      'filter[folder][:uri:]': "http://mu.semte.ch/application/editor-document-folder/ae5feaed-7b70-4533-9417-10fbbc480a4c"
     };
 
     if (filter.title.length > 0) {
