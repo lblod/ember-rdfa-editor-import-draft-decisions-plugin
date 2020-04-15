@@ -3,10 +3,7 @@ import Service from '@ember/service';
 import EmberObject, { computed } from '@ember/object';
 import { task } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
-
-function isEmpty(selectedContexts) {
-  return selectedContexts.selections.length == 0;
-}
+import isEmpty from '@lblod/ember-rdfa-editor/utils/is-empty'
 
 export default class RdfaEditorImportDraftDecisionsPluginService extends Service {
   editorApi = "1.0"
