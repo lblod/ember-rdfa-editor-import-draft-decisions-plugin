@@ -47,7 +47,7 @@ export default class ImportDrafDecisionsCard extends Component {
     this.filter = EmberObject.create({
       title: '',
       page: 0,
-      size: 2,
+      size: 10,
       sort: '-current-version.updated-on',
     });
 
