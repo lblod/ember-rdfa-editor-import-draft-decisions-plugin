@@ -6,7 +6,7 @@ import { inject as service } from '@ember/service';
 import isEmpty from '@lblod/ember-rdfa-editor/utils/is-empty'
 
 export default class RdfaEditorImportDraftDecisionsPluginService extends Service {
-  editorApi = "1.0"
+  editorApi = "0.1"
   @service store;
 
   async execute(rdfaBlocks, hintsRegistry, editor, extraInfo) {
