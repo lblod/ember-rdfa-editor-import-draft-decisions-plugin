@@ -6,13 +6,13 @@ import { inject as service } from '@ember/service';
 import isEmpty from '@lblod/ember-rdfa-editor/utils/is-empty'
 
 export default class RdfaEditorImportDraftDecisionsPluginService extends Service {
-  editorApi = "1.0"
+  editorApi = "0.1"
   @service store;
 
   async execute(rdfaBlocks, hintsRegistry, editor, extraInfo) {
     hintsRegistry.removeHints( { rdfaBlocks, scope: "import-draft-decisions" } );
-    for (const block of rdfaBlocks) {
 
+    for (const block of rdfaBlocks) {
       const location = block.region;
       const selection = editor.selectContext( block.region, {
         property: "http://mu.semte.ch/vocabularies/ext/draftDecisionsHint"
