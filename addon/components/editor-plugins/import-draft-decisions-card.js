@@ -80,7 +80,7 @@ export default class ImportDrafDecisionsCard extends Component {
       sort: filter.sort,
       include: 'current-version',
       'filter[folder][:uri:]': "http://mu.semte.ch/application/editor-document-folder/ae5feaed-7b70-4533-9417-10fbbc480a4c",
-      'filter[status][:uri:]': "http://mu.semte.ch/application/editor-document-folder/c02542af-e6be-4cc6-be60-4530477109fc"
+      'filter[status][:uri:]': "http://mu.semte.ch/application/editor-document-statuses/c02542af-e6be-4cc6-be60-4530477109fc"
     };
 
     if (filter.title.length > 0) {
