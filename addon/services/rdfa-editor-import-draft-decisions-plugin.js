@@ -1,16 +1,11 @@
-import { getOwner } from '@ember/application';
 import Service from '@ember/service';
-import EmberObject, { computed } from '@ember/object';
-import { task } from 'ember-concurrency';
-import { inject as service } from '@ember/service';
-import isEmpty from '@lblod/ember-rdfa-editor/utils/is-empty'
+import { A } from '@ember/array';
 
 export default class RdfaEditorImportDraftDecisionsPluginService extends Service {
   editorApi = "0.1"
-  @service store;
   draftDecisionProperty = 'http://mu.semte.ch/vocabularies/ext/draftDecisionsHint'
 
-  async execute(rdfaBlocks, hintsRegistry, editor, extraInfo) {
+  async execute(rdfaBlocks, hintsRegistry, editor) {
     hintsRegistry.removeHints( { rdfaBlocks, scope: "import-draft-decisions" } );
 
     for (const block of rdfaBlocks) {
