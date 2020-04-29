@@ -1,6 +1,6 @@
 {
   "name": "@lblod/ember-rdfa-editor-import-draft-decisions-plugin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "RDFa editor plugin to insert draft decisions in meeting minutes.",
   "keywords": [
     "ember-addon"
