@@ -1,5 +1,6 @@
 ember-rdfa-editor-import-draft-decisions-plugin
 ==============================================================================
+:warning: This ember addon is no longer maintained. Please use [@lblod/ember-rdfa-editor-lblod-plugins](https://github.com/lblod/ember-rdfa-editor-lblod-plugins) instead.
 
 Plugin that allows to insert draft decisons inside of meeting minutes.
 
